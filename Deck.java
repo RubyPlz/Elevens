@@ -24,6 +24,16 @@ public class Deck
      */
     public Deck(String[] ranks, String[] suits, int[] values) 
     {
+        cards = new Card[ranks.length*suits.length];
+        int counter = 0;
+        for(int r = 0; r < ranks.length; r++){
+            for(int s = 0; s < suits.length; s++){
+                cards[counter] = new Card(ranks[r], suits[s], values[r]);
+                counter++;
+
+            }
+        }
+        size = counter;
     }
 
     /**
@@ -32,7 +42,7 @@ public class Deck
      */
     public int getSize() 
     {
-        return -1;      // replace this line
+        return size;      // replace this line
     }
 
     /**
@@ -41,7 +51,7 @@ public class Deck
      */
     public boolean isEmpty() 
     {
-        return false;   // replace this line
+        return size == 0;   // replace this line
     }
 
     /**

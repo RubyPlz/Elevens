@@ -22,6 +22,9 @@ public class Card
      */
     public Card(String cardRank, String cardSuit, int cardValue) 
     {
+        rank = cardRank;
+        suit = cardSuit;
+        value = cardValue;
     }
 
     /**
@@ -30,7 +33,7 @@ public class Card
      */
     public String getRank() 
     {
-        return null;    // replace this line
+        return rank;    // replace this line
     }
 
     /**
@@ -39,7 +42,7 @@ public class Card
      */
     public String getSuit() 
     {
-        return null;    // replace this line
+        return suit;    // replace this line
    }
 
    /**
@@ -48,7 +51,7 @@ public class Card
      */
     public int getValue() 
     {
-        return -1;      //replace this line
+        return value;//replace this line
     }
 
     /** Compare this card with the argument.
@@ -59,7 +62,12 @@ public class Card
      */
     public boolean equals(Card other) 
     {
-        return false;   // replace this line
+        if(this.getRank().equals(other.getRank())&&
+           this.getSuit().equals(other.getSuit())&&
+           this.getValue() == other.getValue()){
+               return true;
+        }
+        return false;// replace this line
     }
 
     /**
