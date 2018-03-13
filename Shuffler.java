@@ -14,7 +14,13 @@ public class Shuffler
      */
     public static int[] perfectShuffle(int[] values) 
     {
-        return null;    // replace this line
+        for(int k = values.length; k > 0; k--){
+            int r = (int)(Math.random() * k);
+            int temp = values[k];
+            values[k] = values[r];
+            values[r] = temp;
+        }
+        return values;    // replace this line
     }
 
     /**

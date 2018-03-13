@@ -20,17 +20,16 @@ public class Deck
      * and produces one of the corresponding card.
      * @param ranks is an array containing all of the card ranks.
      * @param suits is an array containing all of the card suits.
-     * @param values is an array containing all of the card point values.
+     * @param cards is an array containing all of the card point cards.
      */
-    public Deck(String[] ranks, String[] suits, int[] values) 
+    public Deck(String[] ranks, String[] suits, int[] cards) 
     {
         cards = new Card[ranks.length*suits.length];
         int counter = 0;
         for(int r = 0; r < ranks.length; r++){
             for(int s = 0; s < suits.length; s++){
-                cards[counter] = new Card(ranks[r], suits[s], values[r]);
+                cards[counter] = new Card(ranks[r], suits[s], cards[r]);
                 counter++;
-
             }
         }
         size = counter;
@@ -60,6 +59,12 @@ public class Deck
      */
     public void shuffle() 
     {        
+        for(int k = cards.length; k > 0; k--){
+            int r = (int)(Math.random() * k);
+            Card temp = cards[k];
+            cards[k] = cards[r];
+            cards[r] = temp;
+        }
     }
 
     /**
