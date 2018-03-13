@@ -14,13 +14,18 @@ public class Shuffler
      */
     public static int[] perfectShuffle(int[] values) 
     {
-        for(int k = values.length; k > 0; k--){
-            int r = (int)(Math.random() * k);
-            int temp = values[k];
-            values[k] = values[r];
-            values[r] = temp;
+        int[] shuffled = new int[values.length];
+        int e = 0;
+        int o = values.length/2;
+        for(int k = 0; e < values.length / 2; k = k + 2){
+            shuffled[k] = values[e];
+            e++;
         }
-        return values;    // replace this line
+        for(int k = 1; o < values.length; k = k + 2){
+            shuffled[k] = values[o];
+            o++;
+        }
+        return shuffled;
     }
 
     /**
@@ -35,5 +40,11 @@ public class Shuffler
      */
     public static void selectionShuffle(int[] values) 
     {
+        for(int k = values.length - 1; k > 0; k--){
+            int r = (int)(Math.random() * k);
+            int temp = values[k];
+            values[k] = values[r];
+            values[r] = temp;
+        } 
     }
 }
