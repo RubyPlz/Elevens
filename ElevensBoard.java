@@ -56,13 +56,16 @@ public class ElevensBoard extends Board
     @Override
     public boolean isLegal(List<Integer> selectedCards) 
     {
-        
+        //Checks to see if the pair equals 11 and returns true is so
         if(selectedCards.size()==2){//asfuaegiyaehgiuaeghadg
             return this.containsPairSum11(selectedCards);
         }
+        //Checks to see if there are 3 cards that consist of Jack, Queen, and
+        //King, and returns true is so
         if(selectedCards.size()==3){
             return this.containsJQK(selectedCards);
         }
+        //Returns false if none of the other conditions are met
         return false;   // replace this line
     }
     
@@ -77,6 +80,8 @@ public class ElevensBoard extends Board
     @Override
     public boolean anotherPlayIsPossible() 
     {
+        //If the deck has a collection of cards that are legal (add 2 cards
+        //to 11 or have a Jack Queen and King, the method returns true
         return this.containsPairSum11(cardIndexes()) || 
         this.containsJQK(cardIndexes());// replace this line
     }
@@ -91,8 +96,13 @@ public class ElevensBoard extends Board
      */
     public boolean containsPairSum11(List<Integer> selectedCards) 
     {
+        //Goes through every single combination of number cards through
+        //the cards in hand to find a pair that totals 11. If this is found
+        //it returns true
         for(Integer i : selectedCards){
+            //for one card
             for(Integer r : selectedCards){
+                //for everyi possible combination of the previous 1 card
                 if(cardAt(i).getValue() + cardAt(r).getValue() == 11){
                     return true;
                 }
@@ -111,24 +121,34 @@ public class ElevensBoard extends Board
      */
     public boolean containsJQK(List<Integer> selectedCards) 
     {
+        //sets all variables to equal false and will change if Jack, Queen, 
+        //or king is found.
         boolean foundJack = false;
         boolean foundQueen = false;
         boolean foundKing = false;
+        //Goes through all selected cards to look for a card that equals jack
         for(Integer i : selectedCards){
             if(cardAt(i).getRank().equals("jack")){
+                //Jack is in selected cards
                 foundJack = true;
             }
         }
+        //Goes through all selected cards to look for a card that equals queen
         for(Integer i : selectedCards){
             if(cardAt(i).getRank().equals("queen")){
+                //Queen is in selected cards
                 foundQueen = true;
             }
         }
+        //Goes through all selected cards to look for a card that equals king
         for(Integer i : selectedCards){
             if(cardAt(i).getRank().equals("king")){
+                //King is in selected cards
                 foundKing = true;
             }
         }
+        //If Jack, Queen, and King are in selected cards, return true (can
+        //be played)
         return foundJack && foundQueen && foundKing;   // replace this line
     }   
 }

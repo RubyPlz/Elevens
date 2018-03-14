@@ -10,7 +10,7 @@
 public class Deck 
 {
 
-    private Card[] cards;
+    private Card[] cards; //deck of cards
     private int size;   // represents the number of undelt cards
 
 
@@ -24,14 +24,20 @@ public class Deck
      */
     public Deck(String[] ranks, String[] suits, int[] values)
     {
+        //Creates a new deck of cards
         cards = new Card[ranks.length*suits.length];
         int counter = 0;
+        //Goes through ranks and values
         for(int r = 0; r < ranks.length; r++){
+            //For each rank and value, it goes through all suits
             for(int s = 0; s < suits.length; s++){
+                //Creates new unique card and keeps track of size
                 cards[counter] = new Card(ranks[r], suits[s], values[r]);
                 counter++;
             }
         }
+        //Creates a deck of cards in which all cards of the same value/rank
+        //are together, but with a different suit.
         size = counter;
     }
 
@@ -41,6 +47,7 @@ public class Deck
      */
     public int getSize() 
     {
+        //Returns how many cards are in the deck
         return size;      // replace this line
     }
 
@@ -50,6 +57,7 @@ public class Deck
      */
     public boolean isEmpty() 
     {
+        //if the deck is empty (a.k.a. zero) returns true
         return size == 0;   // replace this line
     }
 
@@ -59,12 +67,17 @@ public class Deck
      */
     public void shuffle() 
     {        
+        //Goes through the entire deck exchanging one card for a random other
+        //card (shuffling)
         for(int k = cards.length - 1; k > 0; k--){
             int r = (int)(Math.random() * k);
+            //for every k value, there's a random r value, so the card gets
+            //set to another place
             Card temp = cards[k];
             cards[k] = cards[r];
             cards[r] = temp;
         }
+        //changes the size of the deck to full
         size = cards.length;
     }
 
@@ -75,9 +88,12 @@ public class Deck
      */
     public Card deal() 
     {   
+        //Checks if there are no cards to deal, which it would return null
         if(this.isEmpty()){
             return null;
         }
+        //takes the card from the "top" of the deck and returns it, changing
+        //the size of the deck by 1
         Card temp = cards[size - 1];
         size--;
         return temp;    // replace this line
@@ -89,31 +105,42 @@ public class Deck
      */
     @Override
     public String toString() {
+        //Creates a string that initially represents size and undealt cards
         String rtn = "size = " + size + "\nUndealt cards: \n";
 
         for (int k = size - 1; k >= 0; k--) {
+            //adds card to the displayed deck
             rtn = rtn + cards[k];
+            //As long as k != 0, there's a comma after each card
             if (k != 0) {
                 rtn = rtn + ", ";
             }
+            //every other card would display on a new line
             if ((size - k) % 2 == 0) {
                 // Insert carriage returns so entire deck is visible on console.
                 rtn = rtn + "\n";
             }
         }
 
+        //Adds onto the string dealt cards, denoted by the k being card.length
+        //and continuing until it reaches size (which is when undealt cards
+        //star)
         rtn = rtn + "\nDealt cards: \n";
         for (int k = cards.length - 1; k >= size; k--) {
+            //adds cards to the dealt deck
             rtn = rtn + cards[k];
+            //As long as K != size, there's a comma after each card
             if (k != size) {
                 rtn = rtn + ", ";
             }
+            //every other card would display on a new line
             if ((k - cards.length) % 2 == 0) {
                 // Insert carriage returns so entire deck is visible on console.
                 rtn = rtn + "\n";
             }
         }
         rtn = rtn + "\n";
+        //creates a new line
         return rtn;
     }
 }

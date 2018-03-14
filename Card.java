@@ -62,6 +62,8 @@ public class Card
      */
     public boolean equals(Card other) 
     {
+        //If one card equals the other (through checking rank, suit, and value),
+        //returns true
         if(this.getRank().equals(other.getRank())&&
            this.getSuit().equals(other.getSuit())&&
            this.getValue() == other.getValue()){
@@ -83,6 +85,7 @@ public class Card
     @Override
     public String toString() 
     {
+        //Returns a string that describes the card
         return rank + " of " + suit + " (value = " + value + ")";
     }
 }
