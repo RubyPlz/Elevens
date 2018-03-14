@@ -56,9 +56,16 @@ public class ElevensBoard extends Board
     @Override
     public boolean isLegal(List<Integer> selectedCards) 
     {
+        
+        if(selectedCards.size()==2){//asfuaegiyaehgiuaeghadg
+            return this.containsPairSum11(selectedCards);
+        }
+        if(selectedCards.size()==3){
+            return this.containsJQK(selectedCards);
+        }
         return false;   // replace this line
     }
-
+    
     /**
      * Determine if there are any legal plays left on the board.
      * In Elevens, there is a legal play if the board contains
@@ -70,7 +77,8 @@ public class ElevensBoard extends Board
     @Override
     public boolean anotherPlayIsPossible() 
     {
-        return false;   // replace this line
+        return this.containsPairSum11(cardIndexes()) || 
+        this.containsJQK(cardIndexes());// replace this line
     }
 
     /**
@@ -83,8 +91,8 @@ public class ElevensBoard extends Board
      */
     public boolean containsPairSum11(List<Integer> selectedCards) 
     {
-        for(int i = 0; i < selectedCards.size() - 1; i++){
-            for(int r = i + 1; r < selectedCards.size(); r++){
+        for(Integer i : selectedCards){
+            for(Integer r : selectedCards){
                 if(cardAt(i).getValue() + cardAt(r).getValue() == 11){
                     return true;
                 }
@@ -106,17 +114,17 @@ public class ElevensBoard extends Board
         boolean foundJack = false;
         boolean foundQueen = false;
         boolean foundKing = false;
-        for(int i = 0; i < selectedCards.size(); i++){
+        for(Integer i : selectedCards){
             if(cardAt(i).getRank().equals("jack")){
                 foundJack = true;
             }
         }
-        for(int i = 0; i < selectedCards.size(); i++){
+        for(Integer i : selectedCards){
             if(cardAt(i).getRank().equals("queen")){
                 foundQueen = true;
             }
         }
-        for(int i = 0; i < selectedCards.size(); i++){
+        for(Integer i : selectedCards){
             if(cardAt(i).getRank().equals("king")){
                 foundKing = true;
             }
